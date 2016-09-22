@@ -1,9 +1,13 @@
 package com.example.kirito.simplemp4player;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.example.kirito.simplemp4player.activity.PlayMp4;
 import com.example.kirito.simplemp4player.adapter.GridViewAdapter;
 import com.example.kirito.simplemp4player.entity.Mp4Item;
 import com.example.kirito.simplemp4player.support.LoadMp4;
@@ -35,11 +39,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void setListItem(final List<Mp4Item> listItem) {
                 adapter = new GridViewAdapter(MainActivity.this,listItem);
-
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         gv.setAdapter(adapter);
+                        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Mp4Item item = (Mp4Item) parent.getItemAtPosition(position);
+                                String pt = item.getPath();
+                                Intent i = new Intent(MainActivity.this, PlayMp4.class);
+                                i.putExtra("path","file://" + pt);
+                                startActivity(i);
+                            }
+                        });
                     }
                 });
 

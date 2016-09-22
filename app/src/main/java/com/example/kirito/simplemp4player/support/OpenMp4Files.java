@@ -29,7 +29,6 @@ public class OpenMp4Files {
     }
 
     public List<Mp4Item> openMp4(String path){
-        int i = 0;
         File file = new File(path);
         File [] files = file.listFiles();
 
@@ -40,6 +39,7 @@ public class OpenMp4Files {
                     Mp4Item item = new Mp4Item();
                     item.setName(name);
                     //Log.e(TAG, "openMp4: path---"+f.getAbsolutePath() );
+                    item.setId(f.getAbsolutePath());
                     item.setPath(f.getAbsolutePath());
                     item.setSize(calculateSize(f.length()));
                     item.setTime(getDuration("file://"+f.getAbsolutePath()));

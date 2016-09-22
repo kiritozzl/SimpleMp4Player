@@ -8,6 +8,15 @@ public class Mp4Item {
     private String name;
     private String time;
     private String size;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getPath() {
         return path;

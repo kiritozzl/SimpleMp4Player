@@ -45,8 +45,9 @@ public class GridViewAdapter extends BaseAdapter {
         Mp4Item item = items.get(position);
         //获取视频文件缩略图
         Bitmap thumb = ThumbnailUtils.createVideoThumbnail(item.getPath(), MediaStore.Images.Thumbnails.MINI_KIND);
-        if (thumb != null){
-            holder.iv.setImageBitmap(thumb);
+        if (thumb != null && item.getId().equals(item.getPath())){
+            Bitmap bm = Bitmap.createScaledBitmap(thumb,170,110,false);
+            holder.iv.setImageBitmap(bm);
         }
         holder.tv_name.setText(item.getName());
         holder.tv_size.setText(item.getSize());
